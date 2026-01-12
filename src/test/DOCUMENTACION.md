@@ -207,6 +207,33 @@ Esto confirma que la aplicación gestiona correctamente el caso en el que no hay
 
 ## Actividad 8
 
+Reto:
+Simula un clic en una película del listado y verifica que la URL cambia o que se intenta cargar el componente de detalle.
+
+Prompt IA:
+Actúa como profesor de testing en React. Quiero aprender a diseñar un test de navegación con Vitest + React Testing Library usando React Router.
+Explícame cómo detectar en Peliculas.jsx que se necesita un Router en el test (por el uso de <Link>).
+Indícame cómo montar un MemoryRouter con una ruta inicial (initialEntries) para empezar en el listado y cómo comprobar que tras hacer clic se renderiza el detalle.
+Explícame por qué en un detalle con mucho texto es mejor usar getByRole("heading", { level: 1 }) en vez de getByText, para evitar coincidencias múltiples.
+Dame un esqueleto AAA y cuándo usar userEvent.setup() con await.
+
+Explicación del test:
+
+Arrange:
+Renderizo el router de la app (componente Router) envuelto en MemoryRouter, indicando una ruta inicial con initialEntries (la página del listado de películas).
+Esto es necesario porque en el listado se usan <Link> y la navegación solo funciona si existe un Router en el árbol de componentes.
+Localizo una película del listado por su texto (ej: “El sexto sentido”).
+
+Act:
+Simulo el clic del usuario en esa película con userEvent.click(...).
+El <Link> cambia la ruta a /detalle/pelicula/:id y se renderiza la vista de detalle.
+
+Assert:
+Verifico que se ha cargado el detalle comprobando que existe el título principal (H1) con el nombre de la película.
+Uso getByRole("heading", { level: 1, name: ... }) para ser más específico y evitar errores por coincidencias múltiples (porque el nombre de la película puede aparecer también dentro de descripciones o biografías).
+
+![alt text](image.png)
+
 ## Actividad 9
 
 ## Actividad 10
