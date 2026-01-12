@@ -86,15 +86,80 @@ Assert:
 
 ## Actividad 4
 
-Reto: En FormularioInterprete.jsx, valida que, si la biografía tiene menos de 50 caracteres, aparece el error: "La biografía debe tener al menos 50 caracteres".
+Reto:
+En FormularioInterprete.jsx, valida que, si la biografía tiene menos de 50 caracteres, aparece el error: "La biografía debe tener al menos 50 caracteres".
+
+Prompt IA:
+Actúa como profesor de testing en React. Quiero aprender a diseñar un test con Vitest + React Testing Library para un formulario controlado que valida varios campos al enviar.
+Explícame cómo identificar en el código qué campos son obligatorios y qué validaciones se ejecutan en handleSubmit.
+Indícame cómo seleccionar el textarea de biografía usando un selector accesible y por qué, en este caso, para llegar al error de biografía necesito rellenar también los otros campos obligatorios (película, nombre e imagen).
+Dame un esqueleto AAA y explica cuándo hay que usar userEvent.setup() con await.
+
+Explicación del test:
+Arrange:
+
+Renderizo <FormularioInterprete /> y localizo los campos obligatorios usando selectores accesibles:
+-Película (select)
+-Nombre (input)
+-Biografía (textarea)
+-URL Imagen (input)
+-Botón Añadir Intérprete
+
+Act:
+Relleno los campos necesarios para que el formulario pueda enviarse:
+-Selecciono una película del <select>
+-Escribo un nombre
+-Escribo una biografía con menos de 50 caracteres
+-Escribo una URL válida que empiece por http
+-Luego pulso el botón de enviar para disparar handleActorSubmit, que ejecuta validateActor y añade el error de biografía.
+
+Assert:
+Compruebo que aparece el mensaje de error “La biografía debe tener al menos 50 caracteres”.
+Además, verifico accesibilidad: el textarea de biografía queda marcado como inválido (aria-invalid="true") y referencia su mensaje de error mediante aria-describedby.
+
+![alt text](image-3.png)
 
 ## Actividad 5
 
-Reto: Verifica que al rellenar el título en el formulario controlado FormularioPeliculaControlado.jsx y pulsar enviar, el campo vuelve a estar vacío (reset).
+Reto:
+Verifica que al rellenar el título en el formulario controlado FormularioPeliculaControlado.jsx y pulsar enviar, el campo vuelve a estar vacío (reset).
+
+Prompt IA:
+Actúa como profesor de testing en React. Quiero aprender a diseñar un test con Vitest + React Testing Library para comprobar el reset de un formulario controlado con useState.
+Explícame cómo identificar en el código en qué condición se resetea el estado (por ejemplo, cuando no hay errores) y qué campos obligatorios debo rellenar para llegar al “camino feliz”.
+Indícame qué selector accesible es mejor para localizar los inputs (getByLabelText vs getByRole) y cómo comprobar con toHaveValue("") que el input se ha vaciado tras enviar.
+
+Explicación del test:
+
+Arrange:
+Renderizo <FormularioPeliculaControlado /> y localizo los campos obligatorios por su label:
+-Nombre
+-Director
+-Clasificación
+-Nota
+-URL Cartelera
+También localizo el botón de envío por role="button" y su nombre visible (“Añadir Película”).
+
+Act:
+Simulo que el usuario rellena todos los campos obligatorios con valores válidos (incluyendo una URL que empiece por http y una nota entre 1 y 10).
+Después hago clic en el botón de enviar para ejecutar handleMovieSubmit.
+Como no hay errores, se ejecuta setMovieData(initialMovieData) y el formulario se resetea.
+
+Assert:
+Verifico que el campo Nombre vuelve a estar vacío tras el envío, comprobando que su valor es "" con toHaveValue("").
+Esto confirma que el estado del formulario se ha reiniciado correctamente.
+
+![alt text](image-4.png)
 
 ## Actividad 6
 
+Reto:
+Comprueba que el buscador en Peliculas.jsx funciona, aunque el usuario escriba en minúsculas (ej: "sexto" para encontrar "El sexto sentido").
+
 ## Actividad 7
+
+Reto:
+Verifica que si buscas una película que no existe (ej: "Iron Man"), aparece el mensaje: "No se encontraron películas con el término Iron Man".
 
 ## Actividad 8
 
