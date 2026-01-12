@@ -19,13 +19,13 @@ Renderizo el componente <List /> pasando props (foto, nombre, esNota10) y un tex
 -si esNota10=false el título NO va en rojo.
 
 Act:
--Localizo el título usando un selector accesible: screen.getByRole("heading", { name: /.../i })
--No hay interacción del usuario en esta actividad.
+Localizo el título usando un selector accesible: screen.getByRole("heading", { name: /.../i })
+No hay interacción del usuario en esta actividad.
 
 Assert:
--Compruebo que el título existe en el DOM (toBeInTheDocument).
--Compruebo que tiene la clase text-red-600 cuando esNota10 es true.
--Compruebo que no tiene text-red-600 cuando esNota10 es false (con .not.toHaveClass(...)).
+Compruebo que el título existe en el DOM (toBeInTheDocument).
+Compruebo que tiene la clase text-red-600 cuando esNota10 es true.
+Compruebo que no tiene text-red-600 cuando esNota10 es false (con .not.toHaveClass(...)).
 
 ![alt text](image-6.png)
 
@@ -44,15 +44,15 @@ Dame un esqueleto de test siguiendo AAA (Arrange/Act/Assert) y explica por qué 
 Explicación del test:
 
 Arrange:
--Renderizo <List /> pasando foto, nombre y un texto por children.
+Renderizo <List /> pasando foto, nombre y un texto por children.
 
 Act:
--Para children, busco el texto pasado usando screen.getAllByText(texto) (porque en el componente children se renderiza en más de un lugar).
--Para la imagen, localizo el <img> con screen.getByAltText(\Foto de ${nombre}`)`.
+Para children, busco el texto pasado usando screen.getAllByText(texto) (porque en el componente children se renderiza en más de un lugar).
+Para la imagen, localizo el <img> con screen.getByAltText(\Foto de ${nombre}`)`.
 
 Assert:
--Compruebo que el contenido children aparece en el documento (al menos una vez).
--Compruebo que la imagen existe y su alt coincide exactamente con el formato Foto de ${nombre}.
+Compruebo que el contenido children aparece en el documento (al menos una vez).
+Compruebo que la imagen existe y su alt coincide exactamente con el formato Foto de ${nombre}.
 
 ![alt text](image-7.png)
 
@@ -74,13 +74,13 @@ Dame un esqueleto AAA y explícame por qué aquí conviene usar getByText para e
 Explicación del test:
 
 Arrange:
--Renderizo <FormularioPeliculaControlado />. Localizo el botón de enviar por accesibilidad (role="button") y nombre visible (“Añadir Película”). Como la validación sucede al enviar, preparo userEvent.setup() para simular el clic.
+Renderizo <FormularioPeliculaControlado />. Localizo el botón de enviar por accesibilidad (role="button") y nombre visible (“Añadir Película”). Como la validación sucede al enviar, preparo userEvent.setup() para simular el clic.
 
 Act:
--Simulo el clic en el botón de submit para disparar handleMovieSubmit. Esta función llama a validateMovie(movieData) y, al estar nombre vacío, añade el error errors.nombre = "El nombre es obligatorio." y lo guarda en el estado movieErrors.
+Simulo el clic en el botón de submit para disparar handleMovieSubmit. Esta función llama a validateMovie(movieData) y, al estar nombre vacío, añade el error errors.nombre = "El nombre es obligatorio." y lo guarda en el estado movieErrors.
 
 Assert:
--Compruebo que aparece en pantalla el mensaje de error “El nombre es obligatorio” (buscando por texto). Esto confirma que la validación se ejecutó y que el error se renderizó en el <p> correspondiente.
+Compruebo que aparece en pantalla el mensaje de error “El nombre es obligatorio” (buscando por texto). Esto confirma que la validación se ejecutó y que el error se renderizó en el <p> correspondiente.
 
 ![alt text](image-8.png)
 
@@ -235,5 +235,30 @@ Uso getByRole("heading", { level: 1, name: ... }) para ser más específico y ev
 ![alt text](image.png)
 
 ## Actividad 9
+
+Reto:
+Testea que, si entramos en /detalle/pelicula/4, el componente Detail muestra correctamente la película "El silencio de los corderos”.
+
+Prompt IA:
+Actúa como profesor de testing en React. Quiero aprender a diseñar un test con Vitest + React Testing Library para comprobar rutas dinámicas con parámetros usando React Router.
+Explícame cómo identificar en el componente Detail.jsx qué parámetro se usa para buscar la película (useParams) y cómo se localiza la información correspondiente en el array de datos.
+Indícame cómo montar un MemoryRouter con initialEntries para simular el acceso directo a una URL concreta sin necesidad de navegar desde el listado.
+Explícame por qué es buena práctica comprobar el contenido principal del detalle usando un selector accesible como getByRole("heading", { level: 1 }).
+
+Explicación del test:
+
+Arrange:
+Renderizo el router principal de la aplicación envuelto en MemoryRouter, indicando como ruta inicial /detalle/pelicula/4 mediante initialEntries.
+Esto simula que el usuario entra directamente a la URL del detalle (por ejemplo, escribiéndola en el navegador o recargando la página).
+
+Act:
+No es necesaria ninguna interacción del usuario en este test.
+Al renderizar el componente, Detail.jsx obtiene el parámetro idPeli mediante useParams, busca la película correspondiente en el array peliculas y renderiza su información.
+
+Assert:
+Compruebo que se muestra en pantalla el título principal (H1) con el nombre “El silencio de los corderos”.
+Uso getByRole("heading", { level: 1, name: /el silencio de los corderos/i }) para asegurarme de que el contenido principal del detalle se ha cargado correctamente.
+
+![alt text](image14.png)
 
 ## Actividad 10
