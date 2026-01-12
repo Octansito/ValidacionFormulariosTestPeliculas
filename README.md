@@ -154,6 +154,7 @@ Esto confirma que el estado del formulario se ha reiniciado correctamente.
 ## Actividad 6
 
 Reto:
+
 Comprueba que el buscador en Peliculas.jsx funciona, aunque el usuario escriba en minúsculas (ej: "sexto" para encontrar "El sexto sentido").
 
 ## Actividad 7
