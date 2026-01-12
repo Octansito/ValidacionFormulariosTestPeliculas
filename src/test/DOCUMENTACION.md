@@ -156,10 +156,29 @@ Esto confirma que el estado del formulario se ha reiniciado correctamente.
 Reto:
 Comprueba que el buscador en Peliculas.jsx funciona, aunque el usuario escriba en minúsculas (ej: "sexto" para encontrar "El sexto sentido").
 
-## Actividad 7
+Prompt IA:
+Actúa como profesor de testing en React. Quiero aprender a diseñar un test de integración con Vitest + React Testing Library para un listado que se filtra al escribir en un buscador.
+Explícame qué debo revisar en Peliculas.jsx para saber si necesito envolver el componente con MemoryRouter (por ejemplo, por el uso de Link).
+Indícame cómo localizar el input del buscador usando un selector accesible (getByRole con name, getByLabelText o getByPlaceholderText) y qué debo mirar en SearchBar.jsx para decidir cuál usar.
+Dame un esqueleto AAA y explícame por qué aquí es buena idea comprobar que aparece un título concreto tras filtrar.
 
-Reto:
-Verifica que si buscas una película que no existe (ej: "Iron Man"), aparece el mensaje: "No se encontraron películas con el término Iron Man".
+Explicación del test:
+
+Arrange:
+Renderizo <Peliculas /> dentro de MemoryRouter porque el listado usa <Link> (React Router) y, sin router, el render podría fallar.
+Localizo el input del buscador con un selector accesible, usando el texto del placeholder/aria-label: "Buscar películas por nombre...".
+
+Act:
+Simulo que el usuario escribe "sexto" (minúsculas) en el input usando userEvent.type(...).
+Esto actualiza searchTerm y la lista filtrada (useMemo + toLowerCase + includes).
+
+Assert:
+Compruebo que aparece en pantalla "El sexto sentido" tras escribir en el buscador.
+Esto valida que el filtro es case-insensitive.
+
+![alt text](image-11.png)
+
+## Actividad 7
 
 ## Actividad 8
 
