@@ -180,6 +180,31 @@ Esto valida que el filtro es case-insensitive.
 
 ## Actividad 7
 
+Reto:
+Verifica que si buscas una película que no existe (ej: "Iron Man"), aparece el mensaje: "No se encontraron películas con el término Iron Man".
+
+Prompt IA:
+Actúa como profesor de testing en React. Quiero aprender a diseñar un test de integración con Vitest + React Testing Library para comprobar el estado “sin resultados” de un listado filtrado.
+Explícame cómo identificar en el componente Peliculas.jsx el mensaje que se renderiza cuando el array filtrado está vacío.
+Indícame qué selector accesible es más adecuado para comprobar la aparición de un mensaje informativo (getByText vs queryByText) y por qué.
+Dame un esqueleto AAA (Arrange / Act / Assert) y explica por qué es importante comprobar también el texto dinámico que incluye el término de búsqueda.
+
+Explicación del test:
+
+Arrange:
+Renderizo el componente <Peliculas /> envuelto en MemoryRouter, ya que el listado utiliza <Link> de React Router.
+Localizo el input del buscador usando un selector accesible (getByRole("textbox")) basado en el nombre/placeholder del campo de búsqueda.
+
+Act:
+Simulo que el usuario escribe “Iron Man” en el buscador mediante userEvent.type(...).
+Esto actualiza el estado searchTerm y provoca que el array filteredPeliculas quede vacío.
+
+Assert:
+Compruebo que aparece en pantalla el mensaje informativo: “No se encontraron películas con el término Iron Man.”
+Esto confirma que la aplicación gestiona correctamente el caso en el que no hay coincidencias y muestra feedback claro al usuario.
+
+![alt text](image-12.png)
+
 ## Actividad 8
 
 ## Actividad 9
