@@ -262,3 +262,30 @@ Uso getByRole("heading", { level: 1, name: /el silencio de los corderos/i }) par
 ![alt text](image14.png)
 
 ## Actividad 10
+
+Reto:
+En FormularioPeliculaNoControlado.jsx, comprueba que los datos no se validan al escribir, sino solo cuando se hace clic en el botón de enviar.
+
+Prompt IA:
+Actúa como profesor de testing en React. Quiero aprender a diseñar un test con Vitest + React Testing Library para un formulario no controlado que usa useRef para leer valores al enviar.
+Explícame cómo identificar en el código que el formulario es no controlado (inputs con ref en lugar de value + onChange) y en qué punto se ejecuta la validación (onSubmit).
+Indícame qué selectores accesibles debo usar para localizar el input “Nombre” y el botón de enviar (getByLabelText y getByRole).
+Dame un esqueleto AAA y explica por qué aquí conviene usar queryByText antes del submit y getByText después del submit.
+
+Explicación del test:
+Arrange:
+Renderizo <FormularioPeliculaNoControlado />.
+Preparo userEvent.setup() para simular interacción real del usuario.
+Localizo el campo Nombre con getByLabelText(/^nombre$/i) y el botón Añadir Película con getByRole("button", { name: /añadir película/i }).
+Mockeo window.alert para evitar warnings en Vitest, ya que el componente llama a alert() en el “camino feliz”.
+
+Act:
+Simulo que el usuario escribe en el input Nombre (sin enviar el formulario).
+Luego simulo el clic en Añadir Película para disparar handleMovieSubmit, que construye el objeto leyendo valores desde refs y ejecuta validateMovie(movieData).
+
+Assert:
+Antes de enviar, verifico que no aparece ningún mensaje de error (uso queryByText porque puede no existir).
+Después de enviar, verifico que sí aparece un error de validación (por ejemplo, “La URL del cartel es obligatoria.”) usando getByText.
+Esto demuestra que la validación no ocurre mientras se escribe, sino solo al submit.
+
+![alt text](image.png)
