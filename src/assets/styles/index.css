@@ -1,0 +1,138 @@
+@import "tailwindcss";
+@import "./theme.css";
+
+/** Metodología BEM
+ * 
+ * Sintaxis:
+ * .bloque__elemento--modificador
+ *
+ * Ejemplo práctico:
+ *
+ * .newsletter {
+ *   text-align: center;
+ * }
+ *
+ * .newsletter__heading {
+ *   font-size: 2rem;
+ *   margin-bottom: 1rem;
+ * }
+ *
+ * .newsletter__button--action {
+ *   background: #74B9FF;
+ *   border-color: #74B9FF;
+ *   color: white;
+ * }
+ *
+ * Explicación:
+ * - "newsletter" es el BLOQUE → el componente principal.
+ * - "newsletter__heading" es un ELEMENTO → parte del bloque.
+ * - "newsletter__button--action" es un MODIFICADOR → una variación del elemento.
+ */
+.contenedor__h1{
+  /* font-family: var(--heading-h1-font-family); */
+  font-size: var(--heading-h1-font-size);
+  font-style: var(--heading-h1-font-style);
+  font-weight: var(--heading-h1-font-weight);
+  letter-spacing: var(--heading-h1-letter-spacing);
+  line-height: var(--heading-h1-line-height);
+  color: var(--colorprimary);
+}
+
+/** Sin una metodología */
+.h1__sqlito {
+  /* font-family: var(--heading-h1-font-family); */
+  font-size: var(--heading-h1-font-size);
+  font-style: var(--heading-h1-font-style);
+  font-weight: var(--heading-h1-font-weight);
+  letter-spacing: var(--heading-h1-letter-spacing);
+  line-height: var(--heading-h1-line-height);
+  color: var(--colorprimary);
+}
+.h2__sqlito {
+  font-family: var(--heading-h2-font-family);
+  font-size: var(--heading-h2-font-size);
+  font-style: var(--heading-h2-font-style);
+  font-weight: var(--heading-h2-font-weight);
+  letter-spacing: var(--heading-h2-letter-spacing);
+  line-height: var(--heading-h2-line-height);
+  color: var(--colorprimary);
+}
+.h3__sqlito {
+  font-family: var(--heading-h3-font-family);
+  font-size: var(--heading-h3-font-size);
+  font-style: var(--heading-h3-font-style);
+  font-weight: var(--heading-h3-font-weight);
+  letter-spacing: var(--heading-h3-letter-spacing);
+  line-height: var(--heading-h3-line-height);
+  color: var(--colorprimary);
+}
+.h4__sqlito {
+  font-family: var(--heading-h4-font-family);
+  font-size: var(--heading-h4-font-size);
+  font-style: var(--heading-h4-font-style);
+  font-weight: var(--heading-h4-font-weight);
+  letter-spacing: var(--heading-h4-letter-spacing);
+  line-height: var(--heading-h4-line-height);
+  color: var(--colorprimary);
+}
+.h5__sqlito {
+  font-family: var(--heading-h5-font-family);
+  font-size: var(--heading-h5-font-size);
+  font-style: var(--heading-h5-font-style);
+  font-weight: var(--heading-h5-font-weight);
+  letter-spacing: var(--heading-h5-letter-spacing);
+  line-height: var(--heading-h5-line-height);
+  color: var(--colorprimary);
+}
+/*
+ * Metodología: Utility-First CSS / Atomic CSS
+ * 
+ * Cada clase define una sola responsabilidad visual concreta, reutilizable en distintos contextos.
+ * Por ejemplo:
+ * .body-text → define el estilo base del cuerpo de texto.
+ * .font-heading-h1 → define exclusivamente las propiedades de un título h1.
+ * .font-heading-h2, .font-heading-h5 → idem para cada jerarquía.
+ * Estas clases no dependen de un bloque o componente, sino que se pueden aplicar a cualquier elemento 
+ * HTML según se necesite. */
+
+.font-heading-h1 {
+  font-family: var(--heading-h1-font-family);
+  font-size: var(--heading-h1-font-size);
+  font-style: var(--heading-h1-font-style);
+  font-weight: var(--heading-h1-font-weight);
+  letter-spacing: var(--heading-h1-letter-spacing);
+  line-height: var(--heading-h1-line-height);
+}
+.font-heading-h2 {
+  font-family: var(--heading-h2-font-family);
+  font-size: var(--heading-h2-font-size);
+  font-style: var(--heading-h2-font-style);
+  font-weight: var(--heading-h2-font-weight);
+  letter-spacing: var(--heading-h2-letter-spacing);
+  line-height: var(--heading-h2-line-height);
+}
+.font-heading-h5 {
+  font-family: var(--heading-h5-font-family);
+  font-size: var(--heading-h5-font-size);
+  font-style: var(--heading-h5-font-style);
+  font-weight: var(--heading-h5-font-weight);
+  letter-spacing: var(--heading-h5-letter-spacing);
+  line-height: var(--heading-h5-line-height);
+}
+.body-text {
+  /* font-family: var(--body-text-font-family); */
+  /* font-size: var(--body-text-font-size); */
+  /* font-style: var(--body-text-font-style); */
+  /* font-weight: var(--body-text-font-weight); */
+  /* letter-spacing: var(--body-text-letter-spacing); */
+  line-height: var(--body-text-line-height);
+  color: var(--colorgrey-3);
+}
+.border-primary {
+  border-color: var(--colorprimary);
+}
+.primary-bg {
+  background-color: var(--colorprimary);
+}
+
+
