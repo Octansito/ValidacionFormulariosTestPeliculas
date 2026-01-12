@@ -117,7 +117,7 @@ Assert:
 Compruebo que aparece el mensaje de error “La biografía debe tener al menos 50 caracteres”.
 Además, verifico accesibilidad: el textarea de biografía queda marcado como inválido (aria-invalid="true") y referencia su mensaje de error mediante aria-describedby.
 
-![alt text](image-3.png)
+![alt text](image-5.png)
 
 ## Actividad 5
 
