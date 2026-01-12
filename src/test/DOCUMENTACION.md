@@ -61,9 +61,36 @@ Assert:
 Reto:
 En FormularioPeliculaControlado.jsx, verifica que, si el usuario intenta enviar el formulario con el nombre vacío, aparece el mensaje "El nombre es obligatorio"
 
+Propmt IA:
+Actúa como profesor de testing en React. Quiero aprender a diseñar un test con Vitest + React Testing Library para un formulario controlado con useState que valida al enviar.
+Explícame qué partes del JSX debo revisar para saber:
+-si es un formulario controlado (value + onChange),
+-dónde se ejecuta la validación (onSubmit),
+-dónde se renderiza el mensaje de error.
+
+Indícame qué selector accesible es mejor para localizar el botón de envío y el campo “Nombre” (getByRole / getByLabelText) y cuándo tengo que usar userEvent con await.
+Dame un esqueleto AAA y explícame por qué aquí conviene usar getByText para el error.
+
+Explicación del test:
+
+Arrange:
+-Renderizo <FormularioPeliculaControlado />. Localizo el botón de enviar por accesibilidad (role="button") y nombre visible (“Añadir Película”). Como la validación sucede al enviar, preparo userEvent.setup() para simular el clic.
+
+Act:
+-Simulo el clic en el botón de submit para disparar handleMovieSubmit. Esta función llama a validateMovie(movieData) y, al estar nombre vacío, añade el error errors.nombre = "El nombre es obligatorio." y lo guarda en el estado movieErrors.
+
+Assert:
+-Compruebo que aparece en pantalla el mensaje de error “El nombre es obligatorio” (buscando por texto). Esto confirma que la validación se ejecutó y que el error se renderizó en el <p> correspondiente.
+
+![alt text](image-2.png)
+
 ## Actividad 4
 
+Reto: En FormularioInterprete.jsx, valida que, si la biografía tiene menos de 50 caracteres, aparece el error: "La biografía debe tener al menos 50 caracteres".
+
 ## Actividad 5
+
+Reto: Verifica que al rellenar el título en el formulario controlado FormularioPeliculaControlado.jsx y pulsar enviar, el campo vuelve a estar vacío (reset).
 
 ## Actividad 6
 
